@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fil">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Larawan - Tupe at Eula Wedding">
+    <meta name="keywords" content="Kasal, Larawan, Gallery, Tupe, Eula, Wedding">
+    <meta name="author" content="Tupe at Eula">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Larawan - Tupe at Eula Wedding</title>
+    <link rel="stylesheet" href="assets/css/page-loader.css?ver=1.0">
+    <link rel="stylesheet" href="assets/css/main.css?ver=2.1">
+    <link rel="stylesheet" href="assets/css/navbar.css?ver=1.0">
+    <link rel="stylesheet" href="assets/css/gallery.css?ver=1.0">
+</head>
+<body class="gallery-page" style="background-image: url('assets/images/gallery/LARAWAN-BACKGROUND.jpg');">
+    <div class="container">
+        <!-- Header with Larawan Headline -->
+        <div class="larawan-header">
+            <img src="assets/images/gallery/LARAWAN-Headline.png" alt="Larawan" class="larawan-headline">
+            <p class="larawan-subtitle">Mga larawang kuha sa piling ni Inang Kalikasan.</p>
+        </div>
+
+        <!-- Category Filter Section -->
+        <div class="category-section section-page">
+            <div class="category-buttons" id="categoryButtons">
+                <!-- Categories will be dynamically generated from JSON -->
+            </div>
+        </div>
+
+        <!-- Gallery Grid Section -->
+        <div class="gallery-grid section-page" id="galleryGrid">
+            <!-- Gallery items will be dynamically generated from JSON -->
+        </div>
+
+    </div>
+
+    <!-- Image Lightbox Modal -->
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <img id="lightboxImage" src="" alt="Gallery Photo" class="lightbox-image">
+            <div class="lightbox-nav">
+                <button class="lightbox-prev" id="lightboxPrev">&#10094;</button>
+                <button class="lightbox-next" id="lightboxNext">&#10095;</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/page-loader.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script>
+        let galleryData = {};
+        let allCategories = [];
+        let categoryBtnsCache = null;
+
+        // Fetch gallery data from JSON
+        async function loadGallery() {
+            try {
+                const response = await fetch('assets/data/images.json');
+                const data = await response.json();
+                galleryData = data.gallery;
+                
+                // Extract categories
+                allCategories = Object.keys(galleryData);
+
+                // Render category buttons
+                renderCategoryButtons();
+                
+                // Render gallery items for first category
+                if (allCategories.length > 0) {
+                    renderGalleryItems(allCategories[0]);
+                }
+                
+                // Attach click handlers once
+                attachCategoryHandlers();
+            } catch (error) {
+                console.error('Error loading gallery:', error);
+            }
+        }
+
+        function renderCategoryButtons() {
+            const categoryButtonsContainer = document.getElementById('categoryButtons');
+            categoryButtonsContainer.innerHTML = '';
+
+            allCategories.forEach((categoryKey, index) => {
+                const category = galleryData[categoryKey];
+                const btn = document.createElement('button');
+                btn.className = `category-btn ${index === 0 ? 'active' : ''}`;
+                btn.textContent = category.categoryName;
+                btn.dataset.category = categoryKey;
+                categoryButtonsContainer.appendChild(btn);
+            });
+        }
+
+        function renderGalleryItems(selectedCategoryKey) {
+            const galleryGrid = document.getElementById('galleryGrid');
+            
+            if (!galleryData[selectedCategoryKey]) return;
+
+            const category = galleryData[selectedCategoryKey];
+            const images = category.images || [];
+
+            if (images.length === 0) {
+                galleryGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #faeab1;">No images in this category yet.</p>';
+                return;
+            }
+
+            // Use DocumentFragment for better performance
+            const fragment = document.createDocumentFragment();
+            
+            images.forEach((photo, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.dataset.category = selectedCategoryKey;
+                galleryItem.dataset.index = index;
+                
+                const wrapper = document.createElement('div');
+                wrapper.className = 'gallery-image-wrapper';
+                
+                const img = document.createElement('img');
+                img.className = 'gallery-image';
+                img.src = `${category.path}/${photo}`;
+                img.alt = `Gallery Photo ${index + 1}`;
+                img.loading = 'lazy';
+                img.dataset.src = `${category.path}/${photo}`;
+                
+                wrapper.appendChild(img);
+                galleryItem.appendChild(wrapper);
+                fragment.appendChild(galleryItem);
+            });
+
+            galleryGrid.innerHTML = '';
+            galleryGrid.appendChild(fragment);
+
+            // Attach image handlers with event delegation
+            attachImageHandlers();
+        }
+
+        function attachCategoryHandlers() {
+            const categoryButtonsContainer = document.getElementById('categoryButtons');
+            
+            // Use event delegation instead of attaching to each button
+            categoryButtonsContainer.addEventListener('click', (e) => {
+                const btn = e.target.closest('.category-btn');
+                if (!btn) return;
+                
+                const categoryBtns = categoryButtonsContainer.querySelectorAll('.category-btn');
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                renderGalleryItems(btn.dataset.category);
+            });
+        }
+
+        // Lightbox functionality
+        const lightboxOverlay = document.getElementById('lightboxOverlay');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        
+        let currentImageIndex = 0;
+        let visibleImages = [];
+
+        function updateVisibleImages() {
+            visibleImages = Array.from(document.querySelectorAll('.gallery-image'));
+        }
+
+        function attachImageHandlers() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            
+            // Use event delegation for better performance
+            galleryGrid.addEventListener('click', (e) => {
+                const img = e.target.closest('.gallery-image');
+                if (!img) return;
+                
+                updateVisibleImages();
+                currentImageIndex = visibleImages.indexOf(img);
+                openLightbox(img.src);
+            }, { once: false });
+        }
+
+        function openLightbox(imageSrc) {
+            lightboxImage.src = imageSrc;
+            lightboxOverlay.classList.add('active');
+        }
+
+        function closeLightbox() {
+            lightboxOverlay.classList.remove('active');
+        }
+
+        function showNextImage() {
+            if (visibleImages.length === 0) return;
+            currentImageIndex = (currentImageIndex + 1) % visibleImages.length;
+            lightboxImage.src = visibleImages[currentImageIndex].src;
+        }
+
+        function showPrevImage() {
+            if (visibleImages.length === 0) return;
+            currentImageIndex = (currentImageIndex - 1 + visibleImages.length) % visibleImages.length;
+            lightboxImage.src = visibleImages[currentImageIndex].src;
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxNext.addEventListener('click', showNextImage);
+        lightboxPrev.addEventListener('click', showPrevImage);
+
+        lightboxOverlay.addEventListener('click', (e) => {
+            if (e.target === lightboxOverlay) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightboxOverlay.classList.contains('active')) return;
+            
+            if (e.key === 'ArrowRight') showNextImage();
+            if (e.key === 'ArrowLeft') showPrevImage();
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // Load gallery on page load
+        document.addEventListener('DOMContentLoaded', loadGallery);
+
+        // Parallax scrolling effect based on container height with throttling
+        let ticking = false;
+        function updateParallax() {
+            const container = document.querySelector('.container');
+            const containerHeight = container.offsetHeight;
+            const scrollPosition = window.pageYOffset;
+            
+            const parallaxOffset = (scrollPosition * 0.2) % (containerHeight * 1.5);
+            
+            document.body.style.backgroundPosition = `center ${-parallaxOffset}px`;
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }, { passive: true });
+        
+        updateParallax();
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fil">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Kasuotan - Tupe at Eula Wedding Outfit Guide">
+    <meta name="keywords" content="Kasuotan, Outfit, Guide, Tupe, Eula, Wedding">
+    <meta name="author" content="Tupe at Eula">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasuotan - Tupe at Eula Wedding</title>
+    <link rel="stylesheet" href="assets/css/page-loader.css?ver=1.0">
+    <link rel="stylesheet" href="assets/css/main.css?ver=2.1">
+    <link rel="stylesheet" href="assets/css/navbar.css?ver=1.0">
+    <link rel="stylesheet" href="assets/css/kasuotan.css?ver=3.0">
+</head>
+<body class="kasuotan-page" style="background-image: url('assets/images/kasuotan/OUTFIT BACKGROUND.jpg');">
+    <div class="container">
+        <!-- Header Section -->
+        <div class="outfit-header">
+            <img src="assets/images/kasuotan/Outfit Headline.png" alt="Ang inyong gabay sa tamang pananamit" class="outfit-headline">
+        </div>
+
+        <!-- Outfit Categories Section -->
+        <div class="outfit-categories section-page">
+            
+            <!-- Ninang at Minong -->
+            <div class="outfit-category-section">
+                <div class="outfit-illustration-container">
+                    <img src="assets/images/kasuotan/Ninong Ninang GR.png" alt="Ninang at Minong" class="outfit-illustration">
+                </div>
+            </div>
+
+            <!-- Mga Abay -->
+            <div class="outfit-category-section">
+                <div class="outfit-illustration-container">
+                    <img src="assets/images/kasuotan/Abay.png" alt="Mga Abay" class="outfit-illustration">
+                </div>
+            </div>
+
+            <!-- Mga Pista -->
+            <div class="outfit-category-section">
+                <div class="outfit-illustration-container">
+                    <img src="assets/images/kasuotan/PAGE LOOK.png" alt="Mga Pista" class="outfit-illustration">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="assets/js/page-loader.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script>
+        // Parallax scrolling effect based on container height with throttling
+        let ticking = false;
+        function updateParallax() {
+            const container = document.querySelector('.container');
+            const containerHeight = container.offsetHeight;
+            const scrollPosition = window.pageYOffset;
+            
+            const parallaxOffset = (scrollPosition * 0.2) % (containerHeight * 1.5);
+            
+            document.body.style.backgroundPosition = `center ${-parallaxOffset}px`;
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }, { passive: true });
+        
+        updateParallax();
+    </script>
+</body>
+</html>

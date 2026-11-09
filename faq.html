@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fil">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="FAQs - Tupe at Eula Wedding Frequently Asked Questions">
+    <meta name="keywords" content="FAQ, Frequently Asked Questions, Wedding, Tupe, Eula, Kasama">
+    <meta name="author" content="Tupe at Eula">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs - Tupe at Eula Wedding</title>
+    <link rel="stylesheet" href="assets/css/page-loader.css?ver=1.0">
+    <link rel="stylesheet" href="assets/css/main.css?ver=2.1">
+    <link rel="stylesheet" href="assets/css/navbar.css?ver=1.0">
+    <link rel="stylesheet" href="assets/css/faq.css?ver=1.0">
+</head>
+<body class="faq-page" style="background-image: url('assets/images/faq/FAQ BACKGROUND.jpg');">
+    <div class="container">
+        <!-- Header Section -->
+        <div class="faq-header">
+            <img src="assets/images/faq/FAQ Headline.png" alt="Frequently Asked Questions" class="faq-headline">
+        </div>
+
+        <!-- FAQ Content Section -->
+        <div class="faq-content-container section-page">
+            <div class="faq-content-wrapper">
+                <!-- FAQ Q1 -->
+                <div class="faq-item">
+                    <img src="assets/images/faq/FAQ Q1.png" alt="FAQ Q1" class="faq-image">
+                </div>
+
+                <!-- FAQ Q2 -->
+                <div class="faq-item">
+                    <img src="assets/images/faq/FAQ Q2.png" alt="FAQ Q2" class="faq-image">
+                </div>
+
+                <!-- FAQ Q3 -->
+                <div class="faq-item">
+                    <img src="assets/images/faq/FAQ Q3.png" alt="FAQ Q3" class="faq-image">
+                </div>
+
+                <!-- FAQ Q4 -->
+                <div class="faq-item">
+                    <img src="assets/images/faq/FAQ Q4.png" alt="FAQ Q4" class="faq-image">
+                </div>
+
+                <!-- FAQ Q5 -->
+                <div class="faq-item">
+                    <img src="assets/images/faq/FAQ Q5.png" alt="FAQ Q5" class="faq-image">
+                </div>
+
+                <!-- FAQ Q6 -->
+                <div class="faq-item">
+                    <img src="assets/images/faq/FAQ Q6.png" alt="FAQ Q6" class="faq-image">
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Bottom Copy Section -->
+        <div class="faq-bottom-section">
+            <img src="assets/images/faq/FAQ bottom copy.png" alt="We're a chat or call away" class="faq-bottom-copy">
+        </div>
+    </div>
+
+    <script src="assets/js/page-loader.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script>
+        // Parallax scrolling effect based on container height with throttling
+        let ticking = false;
+        function updateParallax() {
+            const container = document.querySelector('.container');
+            const containerHeight = container.offsetHeight;
+            const scrollPosition = window.pageYOffset;
+            
+            const parallaxOffset = (scrollPosition * 0.2) % (containerHeight * 1.5);
+            
+            document.body.style.backgroundPosition = `center ${-parallaxOffset}px`;
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }, { passive: true });
+        
+        updateParallax();
+    </script>
+</body>
+</html>

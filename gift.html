@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fil">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Gifts - Tupe at Eula Wedding Gifts Registry">
+    <meta name="keywords" content="Gifts, Wedding, Tupe, Eula, Kasama">
+    <meta name="author" content="Tupe at Eula">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gifts - Tupe at Eula Wedding</title>
+    <link rel="stylesheet" href="assets/css/page-loader.css?ver=1.0">
+    <link rel="stylesheet" href="assets/css/main.css?ver=2.1">
+    <link rel="stylesheet" href="assets/css/navbar.css?ver=1.0">
+    <link rel="stylesheet" href="assets/css/gift.css?ver=1.0">
+</head>
+<body class="gift-page" style="background-image: url('assets/images/gift/GIFT BACKGROUND.jpg');">
+    <div class="container">
+        <!-- Header Section -->
+        <div class="gift-header">
+            <img src="assets/images/gift/GIFT Headline.png" alt="Ana uuona pagdalo ay ang tunay na regalo" class="gift-headline">
+        </div>
+
+        <!-- Gift Content Section -->
+        <div class="gift-content-container section-page">
+            <div class="gift-content-wrapper">
+                <p class="gift-description">
+                    If you still wish to give, we will appreciate monetary gifts to help us prepare for life together.
+                </p>
+                
+                <div class="gift-qr-box">
+                    <img src="assets/images/gift/QR Code.png" alt="Gift Registry QR Code" class="gift-qr-code">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/page-loader.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script>
+        // Parallax scrolling effect based on container height with throttling
+        let ticking = false;
+        function updateParallax() {
+            const container = document.querySelector('.container');
+            const containerHeight = container.offsetHeight;
+            const scrollPosition = window.pageYOffset;
+            
+            const parallaxOffset = (scrollPosition * 0.2) % (containerHeight * 1.5);
+            
+            document.body.style.backgroundPosition = `center ${-parallaxOffset}px`;
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }, { passive: true });
+        
+        updateParallax();
+    </script>
+</body>
+</html>

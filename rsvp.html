@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fil">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="RSVP - Tupe at Eula Wedding RSVP Form">
+    <meta name="keywords" content="RSVP, Wedding, Tupe, Eula, Kasama">
+    <meta name="author" content="Tupe at Eula">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSVP - Tupe at Eula Wedding</title>
+    <link rel="stylesheet" href="assets/css/page-loader.css?ver=1.0">
+    <link rel="stylesheet" href="assets/css/main.css?ver=2.1">
+    <link rel="stylesheet" href="assets/css/navbar.css?ver=1.0">
+    <link rel="stylesheet" href="assets/css/rsvp.css?ver=1.0">
+</head>
+<body class="rsvp-page" style="background-image: url('assets/images/rsvp/RSVP BACKGROUND.jpg');">
+    <div class="container">
+        <!-- Header Section -->
+        <div class="rsvp-header">
+            <img src="assets/images/rsvp/RSVP Headline.png" alt="Nasasabik kaming makasama ka" class="rsvp-headline">
+            <img src="assets/images/rsvp/RSVP Subtext.png" alt="I-fill out ang RSVP form" class="rsvp-subtext">
+        </div>
+
+        <!-- RSVP Form Section -->
+        <div class="rsvp-form-container section-page">
+            <div class="rsvp-form-wrapper">
+                <!-- Google Form Embed -->
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc_example/viewform?embedded=true" 
+                        width="640" 
+                        height="1000" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0"
+                        title="RSVP Form">
+                    Loading…
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/page-loader.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script>
+        // Parallax scrolling effect based on container height with throttling
+        let ticking = false;
+        function updateParallax() {
+            const container = document.querySelector('.container');
+            const containerHeight = container.offsetHeight;
+            const scrollPosition = window.pageYOffset;
+            
+            const parallaxOffset = (scrollPosition * 0.2) % (containerHeight * 1.5);
+            
+            document.body.style.backgroundPosition = `center ${-parallaxOffset}px`;
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }, { passive: true });
+        
+        updateParallax();
+    </script>
+</body>
+</html>

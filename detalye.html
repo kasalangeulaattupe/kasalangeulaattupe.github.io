@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fil">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Detalye ng Venue - Tupe at Eula Wedding">
+    <meta name="keywords" content="Kasal, Venue, Mapa, Detalye, Tupe, Eula, Wedding">
+    <meta name="author" content="Tupe at Eula">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalye - Tupe at Eula Wedding</title>
+    <link rel="stylesheet" href="assets/css/page-loader.css?ver=1.0">
+    <link rel="stylesheet" href="assets/css/main.css?ver=2.1">
+    <link rel="stylesheet" href="assets/css/navbar.css?ver=1.0">
+    <link rel="stylesheet" href="assets/css/detalye.css?ver=2.7">
+</head>
+<body class="detalye-page">
+    <div class="container">
+        <!-- Header with Mapa Headline -->
+        <div class="mapa-header">
+            <img src="assets/images/mapa/MAPA-2-Headline.png" alt="Mapa" class="mapa-headline">
+            <p class="mapa-subtitle">Alamin kung paano magpunta sa Simabahan at Reception Venue.</p>
+        </div>
+
+        <!-- Locations Section -->
+        <div class="locations-grid section-page">
+            
+            <div class="location-address-simbahan">
+                <img src="assets/images/mapa/MAPA-2-SIMBAHAN.png" alt="Simbahan Location Map">
+            </div>
+            <div class="location-map-simbahan click-map-drawing" data-type="image" data-map="simbahan">
+                <img src="assets/images/mapa/MAPA-1-CHURCH.png" alt="Simbahan Location Map">
+            </div>
+            <div class="click-map" data-type="maps" data-map="simbahan" data-address="Diocesan Shrine and Parish of Saint Pio of Pietrelcina, 106 Sumulong Hwy, Antipolo, 1870 Rizal" data-embed="!1m18!1m12!1m3!1d3875.618441!2d121.1461749!3d14.618441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b8dd687da045:0x9498561f5b04038f!2sDiocesan+Shrine+and+Parish+of+Saint+Pio+of+Pietrelcina!5e0!3m2!1sen!2sph!4v1730976794123">Google Maps</div>
+            <div class="location-address-pigingan click-map-drawing" data-type="image" data-map="pigingan">
+                <img src="assets/images/mapa/MAPA-1-VENUE.png" alt="Pigingan Location Map">
+            </div>
+
+            <div class="location-map-pigingan">
+                <img src="assets/images/mapa/MAPA-2-PIGINGAN.png" alt="Pigingan Location Map">
+            </div>
+            <div class="click-map" data-type="maps" data-map="pigingan" data-address="Freedom - Nest Event Place, Brgy. LotiA, Grand Heights Road, San Roque, Antipolo, 1870 Rizal" data-embed="!1m18!1m12!1m3!1d3875.5829714!2d121.1633372!3d14.5829714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c721febe8801:0x6bee6d0b61183773!2sFreedom+Nest+Events+Place!5e0!3m2!1sen!2sph!4v1730976794123">Google Maps</div>
+
+        </div>
+
+    </div>
+
+    <!-- Image Popover Modal -->
+    <div class="popover-overlay" id="popoverOverlay">
+        <div class="popover-content">
+            <button class="popover-close" id="popoverClose">&times;</button>
+            <div id="popoverImageContainer" style="display: none;">
+                <img id="popoverImage" src="" alt="Map Preview">
+            </div>
+            <div class="popover-toolbar" id="popoverToolbar" style="display: none;">
+                <button class="download-btn" id="downloadBtn">
+                    <span>⬇️</span> Download
+                </button>
+                <span style="color: #faeab1; font-size: 0.9rem;">Drag to explore</span>
+            </div>
+            <div id="popoverMapsContainer" style="display: none;">
+                <div class="maps-address" id="popoverMapsAddress"></div>
+                <iframe id="popoverMapsEmbed" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/page-loader.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script>
+        // Map data for different locations
+        const mapData = {
+            simbahan: 'assets/images/mapa/MAPA-1-CHURCH.png',
+            pigingan: 'assets/images/mapa/MAPA-1-VENUE.png'
+        };
+
+        // Popover elements
+        const popoverOverlay = document.getElementById('popoverOverlay');
+        const popoverImageContainer = document.getElementById('popoverImageContainer');
+        const popoverImage = document.getElementById('popoverImage');
+        const popoverToolbar = document.getElementById('popoverToolbar');
+        const popoverMapsContainer = document.getElementById('popoverMapsContainer');
+        const popoverMapsAddress = document.getElementById('popoverMapsAddress');
+        const popoverMapsEmbed = document.getElementById('popoverMapsEmbed');
+        const popoverClose = document.getElementById('popoverClose');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        // Drag functionality for image
+        let isDragging = false;
+        let startX, startY, scrollLeft, scrollTop;
+
+        popoverImageContainer.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX - popoverImageContainer.offsetLeft;
+            startY = e.pageY - popoverImageContainer.offsetTop;
+            scrollLeft = popoverImageContainer.scrollLeft;
+            scrollTop = popoverImageContainer.scrollTop;
+            popoverImageContainer.classList.add('dragging');
+            popoverImage.classList.add('dragging');
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - popoverImageContainer.offsetLeft;
+            const y = e.pageY - popoverImageContainer.offsetTop;
+            const walkX = (x - startX) * 1;
+            const walkY = (y - startY) * 1;
+            popoverImageContainer.scrollLeft = scrollLeft - walkX;
+            popoverImageContainer.scrollTop = scrollTop - walkY;
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            popoverImageContainer.classList.remove('dragging');
+            popoverImage.classList.remove('dragging');
+        });
+
+        // Download functionality
+        downloadBtn.addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.href = popoverImage.src;
+            link.download = 'map-' + new Date().getTime() + '.png';
+            link.click();
+        });
+
+        // Handle all clickable elements
+        const clickableElements = document.querySelectorAll('[data-type]');
+
+        clickableElements.forEach(element => {
+            element.addEventListener('click', () => {
+                const type = element.dataset.type;
+                const mapType = element.dataset.map;
+
+                if (type === 'image') {
+                    // Show image popover
+                    popoverImageContainer.style.display = 'block';
+                    popoverToolbar.style.display = 'flex';
+                    popoverMapsContainer.style.display = 'none';
+                    popoverImage.src = mapData[mapType];
+                    popoverOverlay.classList.add('active');
+                } else if (type === 'maps') {
+                    // Show maps popover
+                    popoverImageContainer.style.display = 'none';
+                    popoverToolbar.style.display = 'none';
+                    popoverMapsContainer.style.display = 'block';
+                    
+                    const address = element.dataset.address;
+                    const embed = element.dataset.embed;
+                    
+                    popoverMapsAddress.textContent = address;
+                    popoverMapsEmbed.src = `https://www.google.com/maps/embed?pb=${embed}`;
+                    popoverOverlay.classList.add('active');
+                }
+            });
+        });
+
+        // Close popover
+        popoverClose.addEventListener('click', () => {
+            popoverOverlay.classList.remove('active');
+        });
+
+        popoverOverlay.addEventListener('click', (e) => {
+            if (e.target === popoverOverlay) {
+                popoverOverlay.classList.remove('active');
+            }
+        });
+
+        // Parallax scrolling effect based on container height
+        function updateParallax() {
+            const container = document.querySelector('.container');
+            const containerHeight = container.offsetHeight;
+            const scrollPosition = window.pageYOffset;
+            
+            const parallaxOffset = (scrollPosition * 0.2) % (containerHeight * 1.5);
+            
+            document.body.style.backgroundPosition = `center ${-parallaxOffset}px`;
+        }
+        
+        window.addEventListener('scroll', updateParallax);
+        updateParallax();
+    </script>
+</body>
+</html>
