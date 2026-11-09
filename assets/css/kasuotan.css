@@ -1,0 +1,133 @@
+/* ========================================
+   KASUOTAN PAGE STYLES
+   ======================================== */
+
+.kasuotan-page {
+    font-family: "Sitka Text", 'Sitka Small 815', Sitka, Georgia, serif;
+    background-attachment: scroll;
+    background-position: center top;
+    background-size: cover;
+    color: #faeab1;
+    line-height: 1.8;
+    overflow-x: hidden;
+    will-change: background-position;
+}
+
+/* ========================================
+   OUTFIT HEADER SECTION
+   ======================================== */
+.outfit-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+    padding: 5rem 1rem 2rem 1rem;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.outfit-headline {
+    object-fit: contain;
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+}
+
+/* ========================================
+   OUTFIT CATEGORIES SECTION
+   ======================================== */
+.outfit-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin-bottom: 3rem;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.outfit-category-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.outfit-illustration-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1400px;
+}
+
+.outfit-illustration {
+    object-fit: contain;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.outfit-category-section:hover .outfit-illustration {
+    transform: scale(1.05);
+}
+
+/* ========================================
+   MEDIA QUERIES
+   ======================================== */
+
+@media (max-width: 768px) {
+    .outfit-header {
+        margin-bottom: 2rem;
+        padding-top: 5rem;
+        padding-bottom: 1rem;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    .outfit-headline {
+        max-width: 85%;
+    }
+    
+    .outfit-categories {
+        gap: 3rem;
+        padding: 0 0.5rem;
+    }
+    
+    .outfit-category-section {
+        /* padding: 1.5rem; */
+        gap: 1.5rem;
+    }
+    
+    .outfit-illustration-container {
+        min-height: 200px;
+        /* padding: 1.5rem; */
+    }
+}
+
+@media (max-width: 480px) {
+    .outfit-header {
+        padding-top: 4rem;
+    }
+
+    .outfit-headline {
+        max-width: 95%;
+    }
+    
+    .outfit-categories {
+        gap: 2rem;
+        padding: 0;
+    }
+    
+    .outfit-category-section {
+        /* padding: 1.2rem; */
+        gap: 1.2rem;
+    }
+    
+    .outfit-illustration-container {
+        min-height: 180px;
+        /* padding: 1rem; */
+    }
+}

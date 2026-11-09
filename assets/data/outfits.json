@@ -1,0 +1,19 @@
+{
+  "outfits": {
+    "minang-minong": {
+      "categoryName": "Minang at Minong",
+      "illustration": "assets/images/kasuotan/Ninong Ninang GR.png",
+      "colors": ["#6fa899", "#9a9f8f", "#5a8a9e"]
+    },
+    "maa-abay": {
+      "categoryName": "Maa Abay",
+      "illustration": "assets/images/kasuotan/Abay.png",
+      "colors": ["#d4a585", "#d8a398", "#e8a68f", "#e89999"]
+    },
+    "maa-pista": {
+      "categoryName": "Maa Pista",
+      "illustration": "assets/images/kasuotan/PAGE LOOK.png",
+      "colors": ["#6fa899", "#d4a585", "#d8a398", "#e8c67a", "#e8d9c9", "#a8b591", "#5a8a9e"]
+    }
+  }
+}

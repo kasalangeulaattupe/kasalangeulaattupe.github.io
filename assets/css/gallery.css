@@ -1,0 +1,379 @@
+/* ========================================
+   GALLERY PAGE STYLES
+   ======================================== */
+
+/* Set background for gallery page */
+.gallery-page {
+    font-family: "Sitka Text", 'Sitka Small 815', Sitka, Georgia, serif;
+    background-attachment: scroll;
+    background-position: center top;
+    background-size: cover;
+    color: #faeab1;
+    line-height: 1.8;
+    overflow-x: hidden;
+    will-change: background-position;
+}
+
+/* ========================================
+   CATEGORY SECTION
+   ======================================== */
+.category-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.category-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.category-btn {
+    background: rgba(250, 234, 177, 0.15);
+    border: 2px solid #faeab1;
+    color: #faeab1;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Sitka Small 599', serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    will-change: transform, background;
+}
+
+.category-btn:hover {
+    background: rgba(250, 234, 177, 0.3);
+    transform: translateY(-2px);
+}
+
+.category-btn.active {
+    background: rgba(250, 234, 177, 0.5);
+    box-shadow: 0 0 15px rgba(250, 234, 177, 0.4);
+}
+
+/* ========================================
+   LIGHTBOX MODAL
+   ======================================== */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.lightbox-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    position: relative;
+    width: 95vw;
+    max-width: 900px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: lightboxSlideIn 0.3s ease;
+    box-sizing: border-box;
+}
+
+@keyframes lightboxSlideIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.lightbox-image {
+    max-width: 100%;
+    max-height: 75vh;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+    object-fit: contain;
+    display: block;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: transparent;
+    border: none;
+    color: #faeab1;
+    font-size: 3rem;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 2001;
+}
+
+.lightbox-close:hover {
+    color: #ffffff;
+    transform: rotate(90deg);
+}
+
+.lightbox-nav {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    padding: 0 2rem;
+    box-sizing: border-box;
+}
+
+.lightbox-prev,
+.lightbox-next {
+    background: rgba(250, 234, 177, 0.3);
+    border: 1px solid #faeab1;
+    color: #faeab1;
+    font-size: 2rem;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    pointer-events: all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: rgba(250, 234, 177, 0.5);
+    transform: scale(1.1);
+}
+
+/* ========================================
+   LARAWAN HEADER SECTION
+   ======================================== */
+.larawan-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+    padding: 5rem 1rem 2rem 1rem;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.larawan-headline {
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 1.5rem;
+}
+
+.larawan-subtitle {
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+/* ========================================
+   GALLERY GRID
+   ======================================== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    width: 100%;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.gallery-item {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.2);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-image-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #333;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.gallery-item:hover .gallery-image {
+    transform: scale(1.08);
+}
+
+.gallery-item.hidden {
+    display: none;
+}
+
+/* ========================================
+   MEDIA QUERIES (RESPONSIVE BREAKPOINTS)
+   ======================================== */
+
+@media (max-width: 1200px) {
+    .gallery-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1.2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .larawan-header {
+        margin-bottom: 2rem;
+        padding-top: 5rem;
+        padding-bottom: 1rem;
+    }
+    
+    .larawan-headline {
+        max-width: 85%;
+    }
+    
+    .larawan-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .category-buttons {
+        gap: 0.75rem;
+    }
+
+    .category-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding: 0 0.5rem;
+    }
+
+    .lightbox-content {
+        width: 95vw;
+    }
+
+    .lightbox-close {
+        top: 10px;
+        right: 10px;
+        font-size: 2.2rem;
+        width: 40px;
+        height: 40px;
+    }
+
+    .lightbox-nav {
+        padding: 0 1rem;
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+        padding: 0.75rem 1rem;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .larawan-header {
+        padding-top: 3.5rem;
+    }
+
+    .larawan-headline {
+        max-width: 95%;
+    }
+    
+    .larawan-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .category-buttons {
+        gap: 0.5rem;
+    }
+
+    .category-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+        padding: 0 0.5rem;
+    }
+
+    .lightbox-close {
+        font-size: 2rem;
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+        padding: 0.5rem 0.75rem;
+        font-size: 1.25rem;
+    }
+}

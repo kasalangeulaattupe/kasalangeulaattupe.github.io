@@ -1,0 +1,394 @@
+/* ========================================
+   DETALYE PAGE STYLES
+   ======================================== */
+
+/* Set background for detalye page */
+.detalye-page {
+
+    font-family: "Sitka Text", 'Sitka Small 815', Sitka, Georgia, serif;
+    background-image: url('../images/mapa/MAPA-2-BACKGROUND.jpg');
+    background-attachment: scroll;
+    background-position: center top;
+    background-size: cover;
+    color: #faeab1;
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+/* ========================================
+   POPOVER MODAL
+   ======================================== */
+.popover-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.popover-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popover-content {
+    position: relative;
+    width: 95vw;
+    max-width: 900px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: popoverSlideIn 0.3s ease;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+@keyframes popoverSlideIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Map Drawing Click Handler */
+.click-map-drawing {
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.click-map-drawing:hover {
+    opacity: 0.8;
+}
+
+/* Image Popover Container */
+#popoverImageContainer {
+    width: 100%;
+    max-height: 75vh;
+    overflow: hidden;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    cursor: grab;
+    position: relative;
+}
+
+#popoverImageContainer.dragging {
+    cursor: grabbing;
+}
+
+#popoverImage {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    cursor: grab;
+    object-fit: contain;
+}
+
+#popoverImage.dragging {
+    cursor: grabbing;
+}
+
+/* Popover Toolbar */
+.popover-toolbar {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.download-btn {
+    background: rgba(250, 234, 177, 0.2);
+    border: 1px solid #faeab1;
+    color: #faeab1;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Sitka Small 599', serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.download-btn:hover {
+    background: rgba(250, 234, 177, 0.35);
+    transform: translateY(-2px);
+}
+
+#popoverMapsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 95vw;
+}
+
+.maps-address {
+    background: rgba(250, 234, 177, 0.15);
+    padding: 1.5rem;
+    border-radius: 8px;
+    color: #faeab1;
+    font-family: 'Sitka Small 599', serif;
+    font-size: 1rem;
+    text-align: center;
+    border-left: 4px solid #faeab1;
+    line-height: 1.6;
+}
+
+#popoverMapsEmbed {
+    width: 100%;
+    height: 500px;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    border: 0;
+}
+
+.popover-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: transparent;
+    border: none;
+    color: #faeab1;
+    font-size: 3rem;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 2001;
+}
+
+.popover-close:hover {
+    color: #ffffff;
+    transform: rotate(90deg);
+}
+
+/* ========================================
+   MAPA HEADER SECTION
+   ======================================== */
+.mapa-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+    padding: 10rem 1rem 2rem 1rem;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.mapa-headline {
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 1.5rem;
+}
+
+.mapa-subtitle {
+    margin-bottom: 2rem;
+}
+
+/* ========================================
+   LOCATIONS GRID
+   ======================================== */
+.locations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-bottom: 3rem;
+    align-items: center;
+    overflow: hidden;
+    row-gap: 3rem;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+/* Location Address and Map Styling */
+.location-address-simbahan,
+.location-map-pigingan {
+    width: 80%;
+    justify-self: center;
+}
+
+.location-map-simbahan,
+.location-address-pigingan {
+    width: 120%;
+    justify-self: center;
+}
+
+.location-address-simbahan img,
+.location-map-pigingan img,
+.location-map-simbahan img,
+.location-address-pigingan img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Google Maps Button */
+.click-map {
+    grid-column: span 2;
+    width: 100%;
+    padding: 1.2rem 2rem;
+    background: rgba(220, 210, 190, 0.75);
+    backdrop-filter: blur(10px);
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: #ffffff;
+    font-style: italic;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.click-map:hover {
+    background: rgba(220, 210, 190, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   MEDIA QUERIES (RESPONSIVE BREAKPOINTS)
+   ======================================== */
+
+@media (max-width: 1200px) {
+    .locations-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        row-gap: 2rem;
+    }
+    
+    .click-map {
+        grid-column: span 1;
+        font-size: 2rem;
+    }
+
+    .location-address-simbahan,
+    .location-map-pigingan,
+    .location-map-simbahan,
+    .location-address-pigingan {
+        width: 100%;
+    }
+    
+    .mapa-headline {
+        max-width: 500px;
+    }
+    
+    .mapa-subtitle {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .mapa-header {
+        margin-bottom: 2rem;
+        padding-top: 5rem;
+        padding-bottom: 1rem;
+    }
+    
+    .mapa-headline {
+        max-width: 85%;
+    }
+    
+    .mapa-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .locations-grid {
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        padding: 0 0.5rem;
+    }
+
+    .click-map {
+        font-size: 1.5rem;
+        padding: 1rem 1.5rem;
+    }
+    
+    /* Popover Mobile Adjustments */
+    .popover-content {
+        width: 95vw;
+    }
+
+    .popover-close {
+        top: 10px;
+        right: 10px;
+        font-size: 2.2rem;
+        width: 40px;
+        height: 40px;
+    }
+
+    #popoverMapsEmbed {
+        height: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mapa-header {
+        padding-top: 3.5rem;
+    }
+
+    .mapa-headline {
+        max-width: 95%;
+    }
+    
+    .mapa-subtitle {
+        font-size: 1.5rem;
+    }
+
+    .click-map {
+        font-size: 1.25rem;
+        padding: 0.8rem 1rem;
+    }
+
+    .maps-address {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+
+    #popoverMapsEmbed {
+        height: 300px;
+    }
+
+    .download-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.6rem 1rem;
+    }
+}
