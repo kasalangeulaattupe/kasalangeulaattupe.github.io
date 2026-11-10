@@ -42,6 +42,8 @@ body {
     line-height: 1.8;
     overflow-x: hidden;
     background-color: #444638;
+    backdrop-filter: blur(30px);
+    background-size: 120%;
 }
 
 .container {
