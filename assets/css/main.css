@@ -52,7 +52,7 @@ body {
     min-height: 100vh;
     max-width: 2400px;
     padding-bottom: 3rem;
-    backdrop-filter: blur(25px);
+    backdrop-filter: blur(10px);
 }
 
 /* ========================================
@@ -70,7 +70,7 @@ body {
     scroll-snap-stop: always;
 }
 img {
-    max-width:100%;
+    max-width: 900px;
 }
 .header img {
     max-width: 90%;
@@ -84,7 +84,7 @@ h2,h3{
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 h2{
-    font-size: 7rem;
+    font-size: 5rem;
     color: #f9eab0;
     margin-bottom: 2rem;
 }
@@ -105,7 +105,8 @@ p , a {
     font-family: "Sitka Text", 'Sitka Small 815', Sitka, Georgia, serif;
     font-weight: normal;
     font-style: italic;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
+    margin-bottom: .8rem;
 }
 .section{
     text-align: center;
@@ -132,7 +133,6 @@ p , a {
 }
 .invitation-date p{
     color: white;
-    font-size: 3.3em;
 }
 
 /* ========================================
@@ -175,7 +175,7 @@ p , a {
    ======================================== */
 
 .tula {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 .tula:last-child {
@@ -241,14 +241,14 @@ p , a {
    ======================================== */
 .page-link a {
     color: #fbf3d2;
-    text-decoration: none;
     cursor: pointer;
-    font-size: 3.5rem;
+    font-size: 2rem;
     position: relative;
     display: inline-block;
+    text-decoration: underline;
 }
 
-.page-link a::after {
+/* .page-link a::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -259,15 +259,15 @@ p , a {
     transform: scaleX(0);
     transform-origin: center;
     transition: transform 0.4s ease-in-out;
-}
+} */
 
 .page-link a:hover {
-    color: #f5e6d3;
+    color: #ffffff;
 }
 
-.page-link a:hover::after {
+/* .page-link a:hover::after {
     animation: lineGrowWidth 0.3s ease-in-out forwards;
-}
+} */
 
 /* ========================================
    DRESS CODE SECTION
@@ -275,6 +275,7 @@ p , a {
 .color-palette-section.section {
     display: grid;
     gap: 2em;
+    justify-items: center;
 }
 .dress-title {
     font-size: 1.8rem;
@@ -592,6 +593,8 @@ p , a {
 
 .color-image {
     opacity: 0;
+    max-width: 900px;
+    text-align: center;
 }
 
 .color-image.circle-reveal-animate {
