@@ -63,17 +63,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(250, 234, 177, 0.95);
+    background: rgb(255 255 255 / 95%);
     border-radius: 12px;
-    overflow: hidden;
+    overflow: visible;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     padding: 1.5rem;
 }
 
 .rsvp-form-wrapper iframe {
     width: 100%;
-    height: auto;
-    min-height: 800px;
+    height: 1500px;
+    aspect-ratio: 640 / 1176;
     border: none;
     border-radius: 8px;
 }
@@ -109,6 +109,7 @@
     }
 
     .rsvp-form-wrapper iframe {
+        aspect-ratio: 640 / 1176;
         min-height: 600px;
     }
 }
@@ -132,11 +133,11 @@
     }
 
     .rsvp-form-wrapper {
-        padding: 0.8rem;
-        margin: 0 0.5rem;
+        padding: 0;
+        margin: 0;
     }
 
     .rsvp-form-wrapper iframe {
-        min-height: 500px;
+        min-height: 1700px;
     }
 }

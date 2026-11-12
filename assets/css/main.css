@@ -46,13 +46,14 @@ body {
 }
 
 .container {
-    width: 100%;
+    width: 90%;
     margin: 0 auto;
     padding: 0 5%;
     min-height: 100vh;
     max-width: 2400px;
     padding-bottom: 3rem;
     backdrop-filter: blur(10px);
+    box-sizing: content-box;
 }
 
 /* ========================================
@@ -71,6 +72,7 @@ body {
 }
 img {
     max-width: 900px;
+    width: 100%;
 }
 .header img {
     max-width: 90%;
@@ -114,10 +116,13 @@ p , a {
     scroll-snap-align: start;
     scroll-snap-stop: always;
 }
+
 /* ========================================
    INVITATION SECTION
    ======================================== */
-
+.invitation.section, .love-story.section, .dress-code.section {
+    padding-top: 5rem;
+}
 .invitation-title {
     font-size: 1.8rem;
     /* font-style: italic; */
