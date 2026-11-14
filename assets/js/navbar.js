@@ -10,11 +10,11 @@ const navbarHTML = `
         <div class="nav-menu" id="navMenu">
             <ul class="nav-list">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="detalye.html">Mga Detalye</a></li>
-                <li><a href="gallery.html">Larawan</a></li>
-                <li><a href="kasuotan.html">Mga Kasuotan</a></li>
+                <li><a href="mapa.html">Mapa</a></li>
+                <li><a href="prenup-sa-purro.html">Prenup sa Puro</a></li>
+                <li><a href="mga-kasuotan.html">Mga Kasuotan</a></li>
                 <li><a href="rsvp.html">RSVP</a></li>
-                <li><a href="gift.html">Gift Registry</a></li>
+                <li><a href="gift-registry.html">Gift Registry</a></li>
                 <li><a href="faq.html">FAQs</a></li>
             </ul>
         </div>

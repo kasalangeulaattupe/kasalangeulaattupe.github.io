@@ -247,24 +247,14 @@ p , a {
 .page-link a {
     color: #fbf3d2;
     cursor: pointer;
-    font-size: 2rem;
+    font-size: 1.5rem;
     position: relative;
     display: inline-block;
     text-decoration: underline;
 }
-
-/* .page-link a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, #fbf3d2, #f5e6d3, #fbf3d2);
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 0.4s ease-in-out;
-} */
+.rsvp-section .page-link a {
+    color: #ffffff;
+}
 
 .page-link a:hover {
     color: #ffffff;
@@ -626,10 +616,9 @@ grid-row-start: 2;
 
 /* 2. Laptop L (max-width: 1440px) */
 @media (max-width: 1440px) {
-    h2 { font-size: 6rem; margin-bottom: 1.5rem; }
+    h2 {font-size: 6rem;margin-bottom: 2.5rem;line-height: 6rem;}
     h3 { font-size: 3.5rem; }
     p, a { font-size: 2rem; }
-    .page-link a { font-size: 2.8rem; }
     .invitation-date p { font-size: 2.5em; }
     .section { margin: 3rem 6%; }
 }
@@ -658,10 +647,7 @@ grid-row-start: 2;
     h2 { font-size: 4rem; }
     h3 { font-size: 2.5rem; }
     p, a { font-size: 1.3rem; }
-    .page-link a { font-size: 1.8rem; }
-    .invitation-date {
-        
-    }
+    .page-link a {font-size: 1.3rem;}
     .invitation-date p { font-size: 1.6em; }
     
     .section {margin: 2.5rem 5%;padding-top: 2rem;margin-bottom: 0;}
@@ -686,7 +672,6 @@ grid-row-start: 2;
     h2 {font-size: 3rem;margin-bottom: 3rem;line-height: 2.5rem;}
     h3 {font-size: 2.5rem;}
     p, a { font-size: 1.1rem; }
-    .page-link a {font-size: 1.3rem;}
     .invitation-date p { font-size: 1.3em; }
     
     .section { margin: 2rem 5%; }

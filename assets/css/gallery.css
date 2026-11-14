@@ -205,6 +205,9 @@
     margin-bottom: 2rem;
     font-style: italic;
 }
+p.larawan-subtitle.photographer {
+    font-size: 1rem;
+}
 
 /* ========================================
    GALLERY GRID
