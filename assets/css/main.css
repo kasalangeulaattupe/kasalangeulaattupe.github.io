@@ -45,6 +45,19 @@ body {
     background-size: 120%;
 }
 
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(68, 70, 56, 0.3);
+    pointer-events: none;
+    z-index: -1;
+    transition: background-color 0.8s ease;
+}
+
 .container {
     width: 90%;
     margin: 0 auto;
@@ -186,7 +199,9 @@ p , a {
 .tula:last-child {
     margin-bottom: 0;
 }
-
+.love-story.section img, .color-palette-section img, .rsvp-section img {
+    max-width: initial;
+}
 
 /* ========================================
    GALLERY LINK SECTION
@@ -588,7 +603,6 @@ p , a {
 
 .color-image {
     opacity: 0;
-    max-width: 900px;
     text-align: center;
 }
 
@@ -688,4 +702,40 @@ grid-row-start: 2;
         padding: 20px 10px;
         margin-top: 20px;
     }
+}
+
+/* ========================================
+   PARALLAX BACKGROUND COLOR SYSTEM
+   ======================================== */
+/* Section-specific background colors for parallax effect */
+body.bg-header::before {
+    background-color: rgba(68, 70, 56, 0.3);
+}
+
+body.bg-invitation::before {
+    background-color: rgba(61, 63, 47, 0.35);
+}
+
+body.bg-events::before {
+    background-color: rgba(74, 92, 74, 0.35);
+}
+
+body.bg-love-story::before {
+    background-color: rgba(90, 74, 58, 0.35);
+}
+
+body.bg-dress-code::before {
+    background-color: rgba(58, 74, 90, 0.35);
+}
+
+body.bg-color-palette::before {
+    background-color: rgba(74, 58, 90, 0.35);
+}
+
+body.bg-rsvp::before {
+    background-color: rgba(90, 74, 74, 0.35);
+}
+
+body.bg-faq::before {
+    background-color: rgba(58, 90, 74, 0.35);
 }
